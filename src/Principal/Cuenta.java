@@ -9,6 +9,7 @@ public class Cuenta {
 	List<Movimiento> mMovimientos;
 
 	double saldo;
+	double limite;
 
 	public Cuenta(String mNumero, String nTitular, double saldo) {
 		super();
@@ -16,6 +17,7 @@ public class Cuenta {
 		this.nTitular = nTitular;
 		this.saldo = saldo;
 		mMovimientos = new ArrayList<>();
+		limite=-500;
 	}
 
 	public double getSaldo() {
@@ -39,7 +41,7 @@ public class Cuenta {
 		if (x < 0) {
 			throw new Exception("El valor no puede ser negativo");
 		} else {
-			if (saldo - x < 0) {
+			if (saldo - x < limite) {
 				throw new Exception("Saldo no disponible");
 			} else {
 				saldo = saldo - x;
