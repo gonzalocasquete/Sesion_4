@@ -33,13 +33,13 @@ class TestCuenta {
 	}
 
 	@Test
-	void testIngresar() {
+	void testIngresar() throws Exception {
 		cuenta_pruebas.ingresar(50);
 		assertEquals(100, cuenta_pruebas.getSaldo());
 	}
 	
 	@Test
-	void testRetirar() {
+	void testRetirar() throws Exception {
 		cuenta_pruebas.retirar(50);
 		assertEquals(0, cuenta_pruebas.getSaldo());
 	}

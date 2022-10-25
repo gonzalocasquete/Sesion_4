@@ -1,19 +1,21 @@
 package Principal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cuenta {
-	  String mNumero; 
-      String nTitular; 
-      List <Movimiento> mMovimientos;
-      
-      double saldo;
+	String mNumero;
+	String nTitular;
+	List<Movimiento> mMovimientos;
+
+	double saldo;
 
 	public Cuenta(String mNumero, String nTitular, double saldo) {
 		super();
 		this.mNumero = mNumero;
 		this.nTitular = nTitular;
 		this.saldo = saldo;
+		mMovimientos = new ArrayList<>();
 	}
 
 	public double getSaldo() {
@@ -24,13 +26,26 @@ public class Cuenta {
 		this.saldo = saldo;
 	}
 
-	public void ingresar(double x) {
-		setSaldo(100);
-		
+	public void ingresar(double x) throws Exception {
+		if (x < 0) {
+			throw new Exception("El valor no puede ser negativo");
+		} else {
+			saldo = saldo + x;
+			mMovimientos.add(new Movimiento(x, "ingreso"));
+		}
 	}
-	
-	public void retirar(double x) {
-		setSaldo(0);
+
+	public void retirar(double x) throws Exception {
+		if (x < 0) {
+			throw new Exception("El valor no puede ser negativo");
+		} else {
+			if (saldo - x < 0) {
+				throw new Exception("Saldo no disponible");
+			} else {
+				saldo = saldo - x;
+				mMovimientos.add(new Movimiento(x, "retiro"));
+			}
+		}
 	}
-         
+
 }
